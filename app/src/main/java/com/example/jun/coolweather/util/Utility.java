@@ -15,7 +15,7 @@ public class Utility {
         if (!TextUtils.isEmpty(response)){
             try{
                 JSONArray allProvinces=new JSONArray(response);
-                for (int i=0;i>allProvinces.length();i++){
+                for (int i=0;i<allProvinces.length();i++){
                     JSONObject provinceObject=allProvinces.getJSONObject(i);
                     Province province=new Province();
                     province.setProvinceName(provinceObject.getString("name"));
@@ -35,12 +35,13 @@ public class Utility {
         if (!TextUtils.isEmpty(response)){
             try{
                 JSONArray allCities=new JSONArray(response);
-                for (int i=0;i>allCities.length();i++){
+                for (int i=0;i<allCities.length();i++){
                     JSONObject cityObject=allCities.getJSONObject(i);
                     City city=new City();
                     city.setCityName(cityObject.getString("name"));
                     city.setCityCode(cityObject.getInt("id"));
                     city.setProvinceId(provinceId);
+                    city.save();
                 }
                 return true;
             }
@@ -55,11 +56,11 @@ public class Utility {
         if (!TextUtils.isEmpty(response)){
             try{
                 JSONArray allCountries=new JSONArray(response);
-                for (int i=0;i>allCountries.length();i++){
+                for (int i=0;i<allCountries.length();i++){
                     JSONObject countryObject=allCountries.getJSONObject(i);
                     Country country=new Country();
                     country.setCountryName(countryObject.getString("name"));
-                    country.setWeatherId(countryObject.getInt("weather_id"));
+                    country.setWeatherId(countryObject.getString("weather_id"));
                     country.setCityId(cityId);
                     country.save();
                 }
